@@ -12,6 +12,6 @@ export function manterApenasNumeros(str: string) {
 * @return {string} string
 */
 
-export function formatDate(date: string,formatStr = 'yyyy-MM-dd HH:mm:ss'){
+export function formatDate(date: string,formatStr: string = 'yyyy-MM-dd HH:mm:ss'): string{
     return format(date, formatStr, { locale: ptBR });
 }

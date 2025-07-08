@@ -11,7 +11,8 @@ const envSchema = z.object({
     DB_PASSWORD: z.string(),
     ACCESS_TOKEN_SECRET: z.string(),
     REFRESH_TOKEN_SECRET: z.string(),
-    ACCESS_TOKEN_EXPIRATION: z.coerce.number().default(3600),
+    ACCESS_TOKEN_EXPIRATION: z.coerce.number().default(1000),
+    REFRESH_TOKEN_EXPIRATION: z.coerce.number().default(3600),
 });
 
 export default envSchema.parse(process.env);

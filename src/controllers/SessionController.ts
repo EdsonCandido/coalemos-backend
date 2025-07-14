@@ -12,7 +12,34 @@ export class SessionController {
             return res.status(200).json(output);
         } catch (err) {
             logger.error(err);
-            return res.status(400).json((err as Error).message);
+            return res.status(400).send((err as Error).message);
         }
     }
+    public async recoverPassword(req: Request, res: Response): Promise<Response> {
+        try {
+            const { login } = req.body;
+            return res.status(200).json({ message: 'Password recovery initiated' });
+        } catch (err) {
+            logger.error(err);
+            return res.status(400).send((err as Error).message);
+        }
+    }
+    public async changePassword(req: Request, res: Response): Promise<Response> {
+        try {
+            const { login, newPassword } = req.body;
+            return res.status(200).json({ message: 'Password changed successfully' });
+        } catch (err) {
+            logger.error(err);
+            return res.status(400).send((err as Error).message);
+        }
+    }
+    public async logout(req: Request, res: Response): Promise<Response> {
+        try {
+            return res.status(200).json({ message: 'Logged out successfully' });
+        } catch (err) {
+            logger.error(err);
+            return res.status(400).send((err as Error).message);
+        }
+    }
+    
 }

@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import logger from '../middlewares/logger';
 import { LoginService } from '../services/session/LoginService';
+import { ChangePasswordService } from '../services/session/ChangePasswordService';
 
 
 export class SessionController {
@@ -26,8 +27,11 @@ export class SessionController {
     }
     public async changePassword(req: Request, res: Response): Promise<Response> {
         try {
-            const { login, newPassword } = req.body;
-            return res.status(200).json({ message: 'Password changed successfully' });
+            const cod_usuario = req.usuario.cod_usuario;
+            const { newPassword, oldPassword } = req.body;
+            const service = new ChangePasswordService();
+            const output = await service.execute({ cod_usuario, newPassword, oldPassword });
+            return res.status(200).json(output);
         } catch (err) {
             logger.error(err);
             return res.status(400).send((err as Error).message);
@@ -41,5 +45,5 @@ export class SessionController {
             return res.status(400).send((err as Error).message);
         }
     }
-    
+
 }

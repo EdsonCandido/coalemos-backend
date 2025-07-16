@@ -7,7 +7,7 @@ import cors from "cors";
 import logger from "./middlewares/logger";
 import loggerMorgan from 'morgan';
 import env from "./configs/env";
-import routes from "./routes";
+import routes from "./routes/index.routes";
 
 
 const APP_PORT = env.APP_PORT || 3333;

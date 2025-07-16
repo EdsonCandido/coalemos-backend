@@ -1,12 +1,18 @@
 import { Request, Response } from "express";
 import logger from "../middlewares/logger";
+import { FindUserByCodService } from "../services/user/FindUserByCodService";
+import { StoreUserService } from "../services/user/StoreUserService";
 
 export class UserController {
-    public async register(req: Request, res: Response): Promise<Response> {
+    public async store(req: Request, res: Response): Promise<Response> {
         try {
-            const { login, nome, senha} = req.body;
-            // Logic for user registration
-            return res.status(201).json({ message: 'User registered successfully' });
+            const { cpf, login, nome, cod, senha, is_admin, is_ativo, is_primeiro_acesso } = req.body;
+            const service = new StoreUserService();
+            const output = await service.execute({
+                cpf, login, nome, cod,
+                senha, is_admin, is_ativo, is_primeiro_acesso,
+            });
+            return res.status(201).json(output);
         } catch (err) {
             logger.error(err);
             return res.status(400).send((err as Error).message);
@@ -15,9 +21,10 @@ export class UserController {
 
     public async getUserProfile(req: Request, res: Response): Promise<Response> {
         try {
-            const userId = req.params.id;
-            // Logic to fetch user profile by userId
-            return res.status(200).json({ message: 'User profile fetched successfully' });
+            const cod = req.params.id;
+            const service = new FindUserByCodService();
+            const output = await service.execute(parseInt(cod));
+            return res.status(200).json(output);
         } catch (err) {
             logger.error(err);
             return res.status(400).send((err as Error).message);

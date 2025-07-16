@@ -1,6 +1,9 @@
 import env from '../configs/env';
 import { Router } from 'express';
-// import IsAuthenticated from '../middlewares/IsAuthenticated';
+import IsAuthenticated from '../middlewares/IsAuthenticated';
+
+import userRoutes from './user.routes';
+import sessionRoutes from './session.routes';
 
 
 const router = Router();
@@ -14,8 +17,8 @@ router.get('/', function (req, res, next) {
     })
 });
 
-// router.use('/session', sessionRoutes);
-// router.use('/users', IsAuthenticated, userRoutes);
+router.use('/session', sessionRoutes);
+router.use('/users', IsAuthenticated, userRoutes);
 // router.use('/banners', bannerRoutes);
 
 export default router;

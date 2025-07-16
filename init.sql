@@ -13,7 +13,7 @@ CREATE TABLE api.usuarios(
 	is_admin boolean DEFAULT false,
 	is_ativo boolean DEFAULT true,
 	created_at timestamp DEFAULT CURRENT_TIMESTAMP,
-    updated_at timestamp DEFAULT NULL,
+    updated_at timestamp DEFAULT NULL
 );
 
 

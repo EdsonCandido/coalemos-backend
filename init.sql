@@ -16,6 +16,8 @@ CREATE TABLE api.usuarios(
     updated_at timestamp DEFAULT NULL
 );
 
+create table api.clientes();
+
 
 /**
 * Insert iniciais

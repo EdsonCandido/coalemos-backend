@@ -1,4 +1,4 @@
-export type IUser = {
+export type tUser = {
     cod?: number;
 	nome?: string;
 	cpf?: string;

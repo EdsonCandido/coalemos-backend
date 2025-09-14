@@ -1,0 +1,6 @@
+{
+  "version": "1",
+  "name": "coalemos_request",
+  "type": "collection",
+  "ignore": ["node_modules", ".git"]
+}

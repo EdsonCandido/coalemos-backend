@@ -1,0 +1,29 @@
+meta {
+  name: LOGIN
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/session/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "login":"suporte@zuko.com",
+    "password": "suporte@zuko.com"
+  }
+}
+
+script:post-response {
+  if (res.body.accessToken) {
+    bru.setVar("accessToken", res.body.accessToken);
+      bru.setVar("refreshToken", res.body.refreshToken);
+  }
+}
+
+settings {
+  encodeUrl: true
+}

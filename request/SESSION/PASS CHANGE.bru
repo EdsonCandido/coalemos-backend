@@ -1,0 +1,26 @@
+meta {
+  name: PASS CHANGE
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/session/change
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:json {
+  {
+    "newPassword": "suporte@zuko.com",
+    "oldPassword": "suporte@zuko.com"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

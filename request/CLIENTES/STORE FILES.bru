@@ -1,0 +1,19 @@
+meta {
+  name: STORE FILES
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{BASE_URL}}/clients/store/files
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+settings {
+  encodeUrl: true
+}

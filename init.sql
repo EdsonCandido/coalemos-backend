@@ -1,8 +1,8 @@
-drop schema api cascade;
+drop schema if exists coalemos cascade;
 
-create schema api;
+create schema coalemos;
 
-CREATE TABLE api.usuarios(
+CREATE TABLE coalemos.usuarios(
 	cod SERIAL PRIMARY KEY,
 	nome VARCHAR(255) NOT NULL,
 	cpf varchar(11) DEFAULT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE api.usuarios(
     updated_at timestamp DEFAULT NULL
 );
 
-create table api.clientes(
+create table coalemos.clientes(
 	cod SERIAL PRIMARY KEY,
 	nome VARCHAR(255) NOT NULL,
 	cpf varchar(11) DEFAULT NULL,
@@ -34,12 +34,24 @@ create table api.clientes(
 	updated_at timestamp DEFAULT NULL
 );
 
+create table coalemos.documentos_cliente(
+    cod SERIAL PRIMARY KEY,
+    cod_cliente int not null,
+    nome_original varchar(255) not null,
+    tipo varchar(10) not null,
+    descricao varchar(255) default null,
+    arquivo TEXT not null,
+    is_ativo boolean DEFAULT true,
+	created_at timestamp DEFAULT CURRENT_TIMESTAMP,
+	updated_at timestamp DEFAULT NULL
+);
+
 
 /**
 * Insert iniciais
 */
 
-INSERT INTO api.usuarios 
-(nome, cpf, login, senha, is_primeiro_acesso, is_admin, is_ativo, created_at) 
-VALUES('Suporte', '07907907907', 'suporte@zuko.com', 
+INSERT INTO coalemos.usuarios
+(nome, cpf, login, senha, is_primeiro_acesso, is_admin, is_ativo, created_at)
+VALUES('Suporte', '07907907907', 'suporte@zuko.com',
 '$2a$08$0wtNVjnFrsd/XeI/N6qN8Oc.JH.skwdIakx57oDgdOoRLAPcf42Sq', true, true, true, now());

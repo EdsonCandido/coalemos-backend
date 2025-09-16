@@ -5,7 +5,7 @@ create schema coalemos;
 CREATE TABLE coalemos.usuarios(
 	cod SERIAL PRIMARY KEY,
 	nome VARCHAR(255) NOT NULL,
-	cpf varchar(11) DEFAULT NULL,
+	cpf_cnpj varchar(14) DEFAULT NULL,
 	login VARCHAR(100) NOT NULL UNIQUE,
 	senha varchar(255) DEFAULT NULL,
 	foto_perfil TEXT DEFAULT NULL,

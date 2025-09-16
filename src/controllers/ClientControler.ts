@@ -3,6 +3,7 @@ import { FindClientService } from '../services/client/FindClientService';
 import logger from '../middlewares/logger';
 import { StoreClientService } from '../services/client/StoreClientService';
 import { FindFilesForClientService } from '../services/client/FindFilesForClientService';
+import { StoreFilesForClientService } from '../services/client/StoreFilesForClientService';
 
 export class ClientController {
   public async find(req: Request, res: Response): Promise<Response> {
@@ -20,7 +21,7 @@ export class ClientController {
   public async store(req: Request, res: Response): Promise<Response> {
     try {
       const {
-        cpf,
+        cpf_cnpj,
         logradouro,
         nome,
         bairro,
@@ -35,7 +36,7 @@ export class ClientController {
       } = req.body;
       const service = new StoreClientService();
       const output = await service.execute({
-        cpf,
+        cpf_cnpj,
         logradouro,
         nome,
         bairro,
@@ -59,7 +60,7 @@ export class ClientController {
     try {
       const cod = req.query?.cod;
       const service = new FindFilesForClientService();
-      const output = await service.execute(Number(cod));
+      const output = await service.execute({ cod: Number(cod) });
       return res.status(200).json(output);
     } catch (err) {
       logger.error(err);
@@ -69,22 +70,23 @@ export class ClientController {
 
   public async storeFile(req: Request, res: Response): Promise<Response> {
     try {
-      const cod = req.query?.cod;
-
-      // const {} = req.body;
+      const { cod_cliente, infoFiles } = req.body;
       const files = req.files;
-      console.log('files', files);
-      
-      { 
-        fieldname: 'files',
-           originalname: 'angular.png',
-           encoding: '7bit',
-           mimetype: 'image/png',
-           buffer: 
-      }
 
-      const service = {};
-      const output = {};
+      // {
+      //   fieldname: 'files',
+      //      originalname: 'angular.png',
+      //      encoding: '7bit',
+      //      mimetype: 'image/png',
+      //      buffer:
+      // }
+
+      const service = new StoreFilesForClientService();
+      const output = await service.execute({
+        cod_cliente,
+        files: files as any,
+        infoFiles,
+      });
       return res.status(200).json(output);
     } catch (err) {
       logger.error(err);

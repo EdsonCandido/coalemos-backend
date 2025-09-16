@@ -6,12 +6,28 @@ meta {
 
 post {
   url: {{BASE_URL}}/clients/STORE
-  body: none
+  body: json
   auth: bearer
 }
 
 auth:bearer {
   token: {{accessToken}}
+}
+
+body:json {
+  {
+       "cpf_cnpj":"",
+          "logradouro":"",
+          "nome":"",
+          "bairro":"",
+          "cep":"",
+          "cidade":"",
+          "complemento":"",
+          "estado":"",
+          "email":"",
+          "numero":"",
+          "telefone":""
+  }
 }
 
 settings {

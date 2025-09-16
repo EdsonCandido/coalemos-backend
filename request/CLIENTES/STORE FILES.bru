@@ -6,12 +6,16 @@ meta {
 
 post {
   url: {{BASE_URL}}/clients/store/files
-  body: none
+  body: multipartForm
   auth: bearer
 }
 
 auth:bearer {
   token: {{accessToken}}
+}
+
+body:multipart-form {
+  files: @file(/home/edson/Downloads/angular.png)
 }
 
 settings {

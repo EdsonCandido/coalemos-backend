@@ -1,7 +1,7 @@
 export type tClient = {
   cod?: string;
   nome: string;
-  cpf: string;
+  cpf_cnpj: string;
   telefone?: string;
   email?: string;
   cep?: string;

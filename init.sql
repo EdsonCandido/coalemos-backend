@@ -12,6 +12,7 @@ CREATE TABLE coalemos.usuarios(
 	is_primeiro_acesso boolean DEFAULT true,
 	is_admin boolean DEFAULT false,
 	is_ativo boolean DEFAULT true,
+	refresh_token text default null,
 	created_at timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp DEFAULT NULL
 );

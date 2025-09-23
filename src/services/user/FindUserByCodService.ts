@@ -7,7 +7,9 @@ export class FindUserByCodService {
         this.conn = pgConnection;
     }
     async execute(cod: number) {
-        return this.conn('coalemos.usuarios')
+
+        if(cod){
+            return await this.conn('coalemos.usuarios')
             .where({ cod })
             .first(
                 'cod',
@@ -21,5 +23,20 @@ export class FindUserByCodService {
                 'created_at',
                 'updated_at'
             );
+        }else{
+             return await this.conn('coalemos.usuarios')
+            .first(
+                'cod',
+                'nome',
+                'cpf',
+                'login',
+                'foto_perfil',
+                'is_primeiro_acesso',
+                'is_admin',
+                'is_ativo',
+                'created_at',
+                'updated_at'
+            ); 
+        } 
     }
 }

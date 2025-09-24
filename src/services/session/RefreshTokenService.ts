@@ -33,12 +33,16 @@ export class RefreshTokenService {
 
     const accessToken = sign(payload, env.ACCESS_TOKEN_SECRET, {
       subject: String(cod_usuario),
-      expiresIn: `${env.ACCESS_TOKEN_EXPIRATION}s`,
+      expiresIn: env.ACCESS_TOKEN_EXPIRATION
+        ? `${env.ACCESS_TOKEN_EXPIRATION}s`
+        : '360s',
     });
 
     const newRefreshToken = sign(payload, env.REFRESH_TOKEN_SECRET, {
       subject: String(cod_usuario),
-      expiresIn: String(`${env.REFRESH_TOKEN_EXPIRATION}s`),
+      expiresIn: env.REFRESH_TOKEN_EXPIRATION
+        ? `${env.REFRESH_TOKEN_EXPIRATION}s`
+        : '600s',
     });
 
     await this.conn('coalemos.usuarios')

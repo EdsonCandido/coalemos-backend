@@ -7,20 +7,18 @@ export class FindUserByCodService {
     this.conn = pgConnection;
   }
   async execute(cod?: number) {
-    const query = this.conn('coalemos.usuarios')
-      .where({ cod })
-      .first(
-        'cod',
-        'nome',
-        'cpf',
-        'login',
-        'foto_perfil',
-        'is_primeiro_acesso',
-        'is_admin',
-        'is_ativo',
-        'created_at',
-        'updated_at',
-      );
+    const query = this.conn('coalemos.usuarios').select(
+      'cod',
+      'nome',
+      'cpf',
+      'login',
+      'foto_perfil',
+      'is_primeiro_acesso',
+      'is_admin',
+      'is_ativo',
+      'created_at',
+      'updated_at',
+    );
 
     if (cod) query.where('cod', cod).first();
 

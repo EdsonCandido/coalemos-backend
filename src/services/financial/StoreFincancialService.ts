@@ -53,6 +53,7 @@ export class StoreFincancialService {
       valor_acrescimo,
       valor_bruto,
       valor_desconto,
+      is_parcela: input.parcelas.length > 0,
       created_at: created_at,
       updated_at: created_at,
     };

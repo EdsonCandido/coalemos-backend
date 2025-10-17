@@ -75,7 +75,7 @@ create table coalemos.financeiro_parcelas(
     data_vencimento DATE NOT NULL,
     data_emissao DATE DEFAULT CURRENT_DATE,
     valor_original DECIMAL(12,2) NOT NULL,
-    valor_original DECIMAL(12,2) NOT NULL,
+    valor_pago DECIMAL(12,2) NOT NULL,
     desconto DECIMAL(12,2) DEFAULT 0,
     acrescimo DECIMAL(12,2) DEFAULT 0,
     status VARCHAR(20) DEFAULT 'pendente', -- pendente, pago, cancelado, atrasado

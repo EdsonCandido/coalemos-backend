@@ -36,6 +36,8 @@ export class LoginService {
 
     if (!passwordMatch) throw new Error('Login ou senha inválidos.');
 
+    delete usuario.senha;
+
     let payload = { cod_usuario: usuario.cod };
 
     const accessToken = sign(payload, env.ACCESS_TOKEN_SECRET, {

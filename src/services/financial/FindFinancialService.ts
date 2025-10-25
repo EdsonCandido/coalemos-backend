@@ -50,7 +50,7 @@ export class FindFinancialService {
       .where('financeiro.is_ativo', true);
 
     const query_parcelas = this.conn('coalemos.financeiro_parcelas')
-      .where('financeiro_parcelas.is_ativo')
+      .where('financeiro_parcelas.is_ativo', true)
       .select(
         'financeiro_parcelas.cod',
         'financeiro_parcelas.cod_financeiro',

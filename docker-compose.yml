@@ -4,7 +4,7 @@ services:
       dockerfile: ./DockerFile
     container_name: api_api
     ports:
-      - "${CONTAINER_APP_PORT}:3000"
+      - '${CONTAINER_APP_PORT}:3000'
     environment:
       - NODE_ENV=${NODE_ENV}
       - DATABASE_CLIENT=${DATABASE_CLIENT}
@@ -20,13 +20,13 @@ services:
 
     restart: always
     depends_on:
-      - postgres_db
+      - db
 
-  postgres_db:
+  db:
     image: postgres:16
     container_name: db_api
     ports:
-      - "${CONTAINER_DATABASE_PORT}:5432"
+      - '${CONTAINER_DATABASE_PORT}:5432'
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASSWORD}

@@ -5,7 +5,7 @@ create schema coalemos;
 CREATE TABLE coalemos.usuarios(
 	cod SERIAL PRIMARY KEY,
 	nome VARCHAR(255) NOT NULL,
-	cpf_cnpj varchar(14) DEFAULT NULL,
+	cpf varchar(14) DEFAULT NULL,
 	login VARCHAR(100) NOT NULL UNIQUE,
 	senha varchar(255) DEFAULT NULL,
 	foto_perfil TEXT DEFAULT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE coalemos.usuarios(
 create table coalemos.clientes(
 	cod SERIAL PRIMARY KEY,
 	nome VARCHAR(255) NOT NULL,
-	cpf varchar(11) DEFAULT NULL,
+	cpf_cnpj varchar(11) DEFAULT NULL,
 	telefone varchar(15) DEFAULT NULL,
 	email VARCHAR(100) DEFAULT NULL,
 	cep varchar(8) DEFAULT NULL,
@@ -63,9 +63,9 @@ create table coalemos.financeiro(
     cod_usuario_criacao int not null,
     updated_at timestamp DEFAULT NULL,
     cod_usuario_updated int not null,
-    foreign key(cod_cliente) references coalemos.clientes(cod) ,
+    foreign key(cod_cliente) references coalemos.clientes(cod),
     foreign key(cod_usuario_criacao) references coalemos.usuarios(cod) ,
-    foreign key(cod_usuario_updated) references coalemos.usuarios.(cod)
+    foreign key(cod_usuario_updated) references coalemos.usuarios(cod)
 );
 
 create table coalemos.financeiro_parcelas(
@@ -94,8 +94,3 @@ create table coalemos.financeiro_parcelas(
 /**
 * Insert iniciais
 */
-
-INSERT INTO coalemos.usuarios
-(nome, cpf, login, senha, is_primeiro_acesso, is_admin, is_ativo, created_at)
-VALUES('Suporte', '07907907907', 'suporte@zuko.com',
-'$2a$08$0wtNVjnFrsd/XeI/N6qN8Oc.JH.skwdIakx57oDgdOoRLAPcf42Sq', true, true, true, now());

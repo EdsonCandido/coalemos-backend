@@ -1,6 +1,6 @@
 import { Knex } from 'knex';
 import logger from './middlewares/logger';
-import { StoreUserService } from './services/user/StoreUserService';
+import { StoreUserService } from './services/users/StoreUserService';
 import { log } from 'winston';
 
 export class SeedsService {
@@ -22,7 +22,11 @@ export class SeedsService {
     try {
       await service.execute(usuario);
     } catch (err) {
-      logger.info((err as Error).message);
+      const message = (err as Error).message;
+
+      if (message == 'Usuário já cadastrado')
+        logger.info((err as Error).message);
+      else logger.error((err as Error).message);
     }
   }
 

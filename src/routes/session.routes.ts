@@ -9,6 +9,6 @@ const controller = new SessionController();
 router.post('/login', controller.login);
 router.post('/change', IsAuthenticated, controller.changePassword);
 router.post('/recover', controller.recoverPassword);
-router.post('/refresh-token', IsAuthenticated, controller.refreshToken);
+router.post('/refresh-token', controller.refreshToken);
 
 export default router;

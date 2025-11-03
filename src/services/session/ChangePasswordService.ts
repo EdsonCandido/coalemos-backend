@@ -1,44 +1,46 @@
-import { Knex } from "knex";
-import pgConnection from "../../databases/pgConnection";
-import { compare, hash } from "bcryptjs";
-import { dtHoje } from "../../helpers/time";
-import { FindUserByCodService } from "../user/FindUserByCodService";
+import { Knex } from 'knex';
+import pgConnection from '../../databases/pgConnection';
+import { compare, hash } from 'bcryptjs';
+import { dtHoje } from '../../helpers/time';
+import { FindUserByCodService } from '../users/FindUserByCodService';
 
 type tProps = {
-    oldPassword: string,
-    newPassword: string,
-    cod_usuario: number
-}
+  oldPassword: string;
+  newPassword: string;
+  cod_usuario: number;
+};
 
 export class ChangePasswordService {
-    private conn: Knex<any, unknown>
-    constructor() {
-        this.conn = pgConnection;
-    }
+  private conn: Knex<any, unknown>;
+  constructor() {
+    this.conn = pgConnection;
+  }
 
-    public async execute(props: tProps) {
-        if (!props.oldPassword || !props.newPassword || !props.cod_usuario)
-            throw new Error("Dados inválidos.");
+  public async execute(props: tProps) {
+    if (!props.oldPassword || !props.newPassword || !props.cod_usuario)
+      throw new Error('Dados inválidos.');
 
-        const existUser = await this.conn('coalemos.usuarios')
-            .where({ cod: props.cod_usuario }).first('cod', 'senha');
+    const existUser = await this.conn('coalemos.usuarios')
+      .where({ cod: props.cod_usuario })
+      .first('cod', 'senha');
 
-        if (!existUser) throw new Error("Usuário inexistente.");
+    if (!existUser) throw new Error('Usuário inexistente.');
 
-        const passwordMatch = await compare(props.oldPassword, existUser.senha);
+    const passwordMatch = await compare(props.oldPassword, existUser.senha);
 
-        if (!passwordMatch) throw new Error("Senha antiga inválida.");
+    if (!passwordMatch) throw new Error('Senha antiga inválida.');
 
-        const passwodHash = await hash(props.newPassword, 10);
+    const passwodHash = await hash(props.newPassword, 10);
 
-        await this.conn('coalemos.usuarios').where({ cod: props.cod_usuario }).update({
-            senha: passwodHash,
-            updated_at: dtHoje(),
-        });
+    await this.conn('coalemos.usuarios')
+      .where({ cod: props.cod_usuario })
+      .update({
+        senha: passwodHash,
+        updated_at: dtHoje(),
+      });
 
-        const service = new FindUserByCodService();
-        const result = await service.execute(props.cod_usuario);
-        return result;
-
-    }
+    const service = new FindUserByCodService();
+    const result = await service.execute(props.cod_usuario);
+    return result;
+  }
 }

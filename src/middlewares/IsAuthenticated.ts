@@ -18,12 +18,12 @@ export default function IsAuthenticated(
   try {
     const authHeader = req.headers.authorization;
     if (!authHeader) {
-      return res.status(401).send('Unauthorized');
+      return res.status(401).send('Unauthorized 1');
     }
     const [, token] = authHeader.split(' ');
 
     if (!token) {
-      return res.status(401).send('Unauthorized');
+      return res.status(401).send('Unauthorized 2');
     }
 
     const decoded = verify(token, env.ACCESS_TOKEN_SECRET);
@@ -41,6 +41,6 @@ export default function IsAuthenticated(
     cb();
   } catch (err) {
     logger.error(err);
-    res.status(401).send('Unauthorized');
+    res.status(401).send((err as Error).message);
   }
 }

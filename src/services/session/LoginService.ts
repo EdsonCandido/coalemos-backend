@@ -54,10 +54,12 @@ export class LoginService {
         : '600s',
     });
 
+    const query = this.conn('coalemos.usuarios');
+
     if (usuario.is_primeiro_acesso)
-      await this.conn('coalemos.usuarios')
-        .update({ is_primeiro_acesso: false })
-        .where({ cod: usuario.cod });
+      query.update({ is_primeiro_acesso: false }).where({ cod: usuario.cod });
+
+    await query.update('refresh_token', refreshToken);
 
     return { accessToken, refreshToken, usuario };
   }

@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import logger from '../middlewares/logger';
-import { FindUserByCodService } from '../services/user/FindUserByCodService';
-import { StoreUserService } from '../services/user/StoreUserService';
-import { ChangeActiveUserByCodService } from '../services/user/ChangeActiveUserByCodService';
+import { FindUserByCodService } from '../services/users/FindUserByCodService';
+import { StoreUserService } from '../services/users/StoreUserService';
+import { ChangeActiveUserByCodService } from '../services/users/ChangeActiveUserByCodService';
 
 export class UserController {
   public async store(req: Request, res: Response): Promise<Response> {

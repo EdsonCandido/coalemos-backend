@@ -90,6 +90,21 @@ create table coalemos.financeiro_parcelas(
     FOREIGN KEY (cod_usuario_updated) REFERENCES coalemos.usuarios(cod)
 );
 
+create table coalemos.banners(
+    cod SERIAL PRIMARY KEY,
+    descricao varchar(255) DEFAULT NULL,
+    arquivo BYTEA not null,
+    nome_arquivo varchar(255),
+    data_vigencia_inicial DATE NOT NULL,
+    data_vigencia_final DATE DEFAULT NULL,
+    is_ativo BOOLEAN DEFAULT TRUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    cod_usuario_criacao INT NOT NULL,
+    updated_at TIMESTAMP DEFAULT NULL,
+    cod_usuario_updated INT DEFAULT NULL,
+    FOREIGN KEY (cod_usuario_criacao) REFERENCES coalemos.usuarios(cod),
+    FOREIGN KEY (cod_usuario_updated) REFERENCES coalemos.usuarios(cod)
+);
 
 /**
 * Insert iniciais

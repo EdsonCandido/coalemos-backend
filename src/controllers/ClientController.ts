@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { FindClientService } from '../services/client/FindClientService';
+import { FindClientService } from '../services/clients/FindClientService';
 import logger from '../middlewares/logger';
-import { StoreClientService } from '../services/client/StoreClientService';
-import { FindFilesForClientService } from '../services/client/FindFilesForClientService';
-import { StoreFilesForClientService } from '../services/client/StoreFilesForClientService';
+import { StoreClientService } from '../services/clients/StoreClientService';
+import { FindFilesForClientService } from '../services/clients/FindFilesForClientService';
+import { StoreFilesForClientService } from '../services/clients/StoreFilesForClientService';
 
 export class ClientController {
   public async find(req: Request, res: Response): Promise<Response> {

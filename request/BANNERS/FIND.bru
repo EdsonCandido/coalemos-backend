@@ -1,16 +1,15 @@
 meta {
-  name: PASS RECOVERY
+  name: FIND
   type: http
   seq: 1
 }
 
-post {
-  url: {{BASE_URL}}/session/
+get {
+  url: {{BASE_URL}}
   body: none
   auth: inherit
 }
 
 settings {
   encodeUrl: true
-  timeout: 0
 }

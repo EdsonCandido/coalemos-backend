@@ -1,0 +1,28 @@
+meta {
+  name: STORE
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{BASE_URL}}/banners
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+body:multipart-form {
+  data_vigencia_final: 2025-11-10
+  data_vigencia_inicial: 2025-11-01
+  descricao: arquivo teste
+  file: @file(/home/edson/Downloads/1.webp)
+  ~cod: null
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

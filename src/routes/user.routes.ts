@@ -7,6 +7,7 @@ const controleler = new UserController();
 
 router.get('/', controleler.getUserProfile);
 router.post('/', controleler.store);
-router.put('/:id', controleler.changeActive);
+router.post('/valid', controleler.validLogin);
+router.put('/:cod', controleler.changeActive);
 
 export default router;

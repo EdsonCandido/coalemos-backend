@@ -3,6 +3,7 @@ import { FindBannerService } from '../services/banners/FindBannerService';
 import logger from '../middlewares/logger';
 import { FindBannerCurrentService } from '../services/banners/FindBannerCurrentService';
 import { StoreBannerService } from '../services/banners/StoreBannerService';
+import { ChangeActiveBannerByCodService } from '../services/banners/ChangeActiveBannerByCodService';
 
 export class BannerController {
   public async find(req: Request, res: Response): Promise<Response> {
@@ -44,6 +45,18 @@ export class BannerController {
         cod_usuario_criacao: cod_usuario,
         cod_usuario_updated: cod_usuario,
       });
+      return res.status(200).json(output);
+    } catch (err) {
+      logger.error(err);
+      return res.status(400).send((err as Error).message);
+    }
+  }
+  public async changeActive(req: Request, res: Response): Promise<Response> {
+    try {
+      const cod = req.params.cod;
+      const cod_usuario = req.usuario.cod_usuario;
+      const service = new ChangeActiveBannerByCodService();
+      const output = await service.execute(Number(cod), cod_usuario);
       return res.status(200).json(output);
     } catch (err) {
       logger.error(err);

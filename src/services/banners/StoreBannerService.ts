@@ -48,7 +48,7 @@ export class StoreBannerService {
       if (parans.arquivo)
         await query.where('cod', parans.cod).update({
           nome_arquivo: `${randomUUID()}-${parans.arquivo.originalname}`,
-          arquivo: parans.arquivo.buffer.toString('base64'),
+          arquivo: parans.arquivo.buffer,
           ...insert,
         });
       else await query.where('cod', parans.cod).update(insert);
@@ -59,7 +59,7 @@ export class StoreBannerService {
 
       console.log({
         nome_arquivo: `${randomUUID()}-${parans?.arquivo?.originalname}`,
-        arquivo: parans.arquivo?.buffer.toString('base64'),
+        arquivo: parans.arquivo?.buffer,
         ...insert,
       });
 

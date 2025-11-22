@@ -17,6 +17,21 @@ CREATE TABLE coalemos.usuarios(
     updated_at timestamp DEFAULT NULL
 );
 
+CREATE TABLE coalemos.empresas(
+  cod SERIAL PRIMARY KEY,
+  cnpj varchar(14) default null,
+  nome_fantasia varchar(100) not null,
+  razao_social varchar(100) not null,
+  cep varchar(8) default null,
+  endereco varchar(100) default null,
+  cidade varchar(50) default null,
+  bairro varchar(50) default null,
+  uf varchar(2) default null,
+  is_ativo boolean DEFAULT true,
+  created_at timestamp DEFAULT CURRENT_TIMESTAMP,
+  updated_at timestamp DEFAULT NULL,
+);
+
 create table coalemos.clientes(
 	cod SERIAL PRIMARY KEY,
 	nome VARCHAR(255) NOT NULL,

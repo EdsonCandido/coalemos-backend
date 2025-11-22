@@ -2,7 +2,7 @@ import { Knex } from 'knex';
 import pgConnection from '../../databases/pgConnection';
 
 type tInput = {
-    cod?: string,
+    cod?: number,
     cnpj: string,
     nome_fantasia: string,
     razao_social: string,

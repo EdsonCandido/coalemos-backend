@@ -1,17 +1,23 @@
-import { format } from "date-fns";
-import { ptBR } from "date-fns/locale";
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 export function manterApenasNumeros(str: string) {
-    return `${str}`.replace(/\D/g, '');
+  return `${str}`.replace(/\D/g, '');
+}
+export function removerCaracteresEspeciais(value: string) {
+  return `${value}`.replace(/[^\w\s]/gi, '');
 }
 
-/** 
-* Retorna uma data no formato indicado.
-* @param {string} date - date sql
-* @param {string} formatStr - output date, by default yyyy-MM-dd HH:mm:ss
-* @return {string} string
-*/
+/**
+ * Retorna uma data no formato indicado.
+ * @param {string} date - date sql
+ * @param {string} formatStr - output date, by default yyyy-MM-dd HH:mm:ss
+ * @return {string} string
+ */
 
-export function formatDate(date: string,formatStr: string = 'yyyy-MM-dd HH:mm:ss'): string{
-    return format(date, formatStr, { locale: ptBR });
+export function formatDate(
+  date: string,
+  formatStr: string = 'yyyy-MM-dd HH:mm:ss',
+): string {
+  return format(date, formatStr, { locale: ptBR });
 }

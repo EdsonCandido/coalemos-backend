@@ -6,6 +6,7 @@ import userRoutes from './user.routes';
 import sessionRoutes from './session.routes';
 import clientRoutes from './client.routes';
 import bannerRoutes from './banner.routes';
+import companyRoutes from './company.routes';
 const router = Router();
 
 router.get('/', function (req, res, next) {
@@ -21,5 +22,6 @@ router.use('/session', sessionRoutes);
 router.use('/users', IsAuthenticated, userRoutes);
 router.use('/clients', IsAuthenticated, clientRoutes);
 router.use('/banners', IsAuthenticated, bannerRoutes);
+router.use('/companies', IsAuthenticated, companyRoutes);
 
 export default router;

@@ -4,6 +4,9 @@ import logger from '../middlewares/logger';
 import { StoreClientService } from '../services/clients/StoreClientService';
 import { FindFilesForClientService } from '../services/clients/FindFilesForClientService';
 import { StoreFilesForClientService } from '../services/clients/StoreFilesForClientService';
+import { SearchCEPService } from '../services/clients/SearchCEPService';
+import { FindUFByClientService } from '../services/clients/FindUFByClientService';
+import { FindCidadeByClientService } from '../services/clients/FindCidadeByClientService';
 
 export class ClientController {
   public async find(req: Request, res: Response): Promise<Response> {
@@ -91,6 +94,41 @@ export class ClientController {
     } catch (err) {
       logger.error(err);
       return res.status(400).json((err as Error).message);
+    }
+  }
+
+  public async searchCEP(req: Request, res: Response): Promise<Response> {
+    try {
+      const { cep } = req.query as { cep: string };
+      const service = new SearchCEPService();
+      const output = await service.execute(cep);
+      return res.status(200).json(output);
+    } catch (err) {
+      logger.error(err);
+      return res.status(400).send((err as Error).message);
+    }
+  }
+
+  public async findUF(req: Request, res: Response): Promise<Response> {
+    try {
+      const service = new FindUFByClientService();
+      const output = await service.execute();
+      return res.status(200).json(output);
+    } catch (err) {
+      logger.error(err);
+      return res.status(400).send((err as Error).message);
+    }
+  }
+
+  public async findCidade(req: Request, res: Response): Promise<Response> {
+    try {
+      const { uf } = req.query as { uf: Array<string> };
+      const service = new FindCidadeByClientService();
+      const output = await service.execute(uf);
+      return res.status(200).json(output);
+    } catch (err) {
+      logger.error(err);
+      return res.status(400).send((err as Error).message);
     }
   }
 }

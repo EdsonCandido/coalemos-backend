@@ -10,11 +10,10 @@ export class SeedsService {
   private async verificaUsuarioPadrao() {
     logger.info('Verificando usuário inicial');
     const usuario = {
-      cpf: '30557812011',
       login: 'suporte@admin.com',
       nome: 'Edson',
       senha: '123456',
-      is_admin: true,
+      perfil: 'admin',
       is_primeiro_acesso: true,
     };
     const service = new StoreUserService();

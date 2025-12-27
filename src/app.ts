@@ -14,8 +14,8 @@ import { SeedsService } from './seeds';
 const APP_PORT = env.APP_PORT || 3333;
 
 const seedService = new SeedsService();
-seedService.execute();
 
+seedService.execute().then();
 const app = express();
 app.disable('x-powered-by');
 app.use(helmet());

@@ -21,15 +21,16 @@ export class RefreshTokenService {
 
     const decoded = verify(refreshToken, env.REFRESH_TOKEN_SECRET);
 
-    const { cod_usuario, exp } = decoded as {
+    const { cod_usuario, exp, perfil } = decoded as {
       cod_usuario: number;
+      perfil: string;
       exp: number;
     };
     const dateNow = Math.floor(Date.now() / 1000);
 
     if (exp < dateNow) throw new Error('Sessão expirada');
 
-    let payload = { cod_usuario: cod_usuario };
+    let payload = { cod_usuario: cod_usuario, perfil: perfil };
 
     const accessToken = sign(payload, env.ACCESS_TOKEN_SECRET, {
       subject: String(cod_usuario),

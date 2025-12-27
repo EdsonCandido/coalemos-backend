@@ -19,12 +19,11 @@ export class LoginService {
       .first(
         'cod',
         'nome',
-        'cpf',
         'login',
         'senha',
         'foto_perfil',
         'is_primeiro_acesso',
-        'is_admin',
+        'perfil',
         'is_ativo',
       );
 
@@ -38,7 +37,7 @@ export class LoginService {
 
     delete usuario.senha;
 
-    let payload = { cod_usuario: usuario.cod };
+    let payload = { cod_usuario: usuario.cod, perfil: usuario.perfil };
 
     const accessToken = sign(payload, env.ACCESS_TOKEN_SECRET, {
       subject: usuario.cod.toString(),

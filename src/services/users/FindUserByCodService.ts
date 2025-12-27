@@ -11,11 +11,10 @@ export class FindUserByCodService {
       .select(
         'cod',
         'nome',
-        'cpf',
         'login',
         'foto_perfil',
         'is_primeiro_acesso',
-        'is_admin',
+        'perfil',
         'is_ativo',
         'created_at',
         'updated_at',

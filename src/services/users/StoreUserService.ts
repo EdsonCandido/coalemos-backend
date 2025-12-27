@@ -8,11 +8,10 @@ import { hash } from 'bcryptjs';
 type tProps = {
   cod?: number;
   nome: string;
-  cpf: string;
   login: string;
   senha?: string;
   is_primeiro_acesso?: boolean;
-  is_admin?: boolean;
+  perfil?: string;
   is_ativo?: boolean;
   created_at?: string;
   updated_at?: string;
@@ -24,11 +23,10 @@ export class StoreUserService {
   }
 
   public async execute({
-    cpf,
     login,
     nome,
     cod,
-    is_admin = false,
+    perfil = 'usuario',
     is_ativo = true,
     is_primeiro_acesso = true,
     senha,
@@ -37,10 +35,9 @@ export class StoreUserService {
     const payload: tProps = {
       cod: cod,
       nome: nome,
-      cpf: cpf,
       login: login,
       is_primeiro_acesso: is_primeiro_acesso,
-      is_admin: is_admin,
+      perfil: perfil,
       is_ativo: is_ativo,
       created_at: hoje,
       updated_at: hoje,

@@ -19,9 +19,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.use('/session', sessionRoutes);
-router.use('/users', IsAuthenticated, userRoutes);
-router.use('/clients', IsAuthenticated, clientRoutes);
-router.use('/banners', IsAuthenticated, bannerRoutes);
-router.use('/companies', IsAuthenticated, companyRoutes);
+router.use('/users', IsAuthenticated(['admin']), userRoutes);
+router.use('/clients', IsAuthenticated(), clientRoutes);
+router.use('/banners', IsAuthenticated(), bannerRoutes);
+router.use('/companies', IsAuthenticated(['admin']), companyRoutes);
 
 export default router;

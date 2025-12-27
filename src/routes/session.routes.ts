@@ -7,7 +7,7 @@ const router = Router();
 const controller = new SessionController();
 
 router.post('/login', controller.login);
-router.post('/change', IsAuthenticated, controller.changePassword);
+router.post('/change', IsAuthenticated(), controller.changePassword);
 router.post('/recover', controller.recoverPassword);
 router.post('/refresh-token', controller.refreshToken);
 

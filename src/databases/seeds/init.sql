@@ -5,12 +5,11 @@ create schema coalemos;
 CREATE TABLE coalemos.usuarios(
 	cod SERIAL PRIMARY KEY,
 	nome VARCHAR(255) NOT NULL,
-	cpf varchar(14) DEFAULT NULL,
 	login VARCHAR(100) NOT NULL UNIQUE,
 	senha varchar(255) DEFAULT NULL,
 	foto_perfil TEXT DEFAULT NULL,
 	is_primeiro_acesso boolean DEFAULT true,
-	is_admin boolean DEFAULT false,
+	perfil varchar(20) DEFAULT 'usuario', -- admin | usuario
 	is_ativo boolean DEFAULT true,
 	refresh_token text default null,
 	created_at timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -29,7 +28,7 @@ CREATE TABLE coalemos.empresas(
   uf varchar(2) default null,
   is_ativo boolean DEFAULT true,
   created_at timestamp DEFAULT CURRENT_TIMESTAMP,
-  updated_at timestamp DEFAULT NULL,
+  updated_at timestamp DEFAULT NULL
 );
 
 create table coalemos.clientes(
@@ -120,7 +119,3 @@ create table coalemos.banners(
     FOREIGN KEY (cod_usuario_criacao) REFERENCES coalemos.usuarios(cod),
     FOREIGN KEY (cod_usuario_updated) REFERENCES coalemos.usuarios(cod)
 );
-
-/**
-* Insert iniciais
-*/

@@ -8,16 +8,14 @@ import { ValidLoginUserService } from '../services/users/ValidLoginUserService';
 export class UserController {
   public async store(req: Request, res: Response): Promise<Response> {
     try {
-      const { cpf, login, nome, cod, senha, is_admin, is_primeiro_acesso } =
-        req.body;
+      const { login, nome, cod, senha, perfil, is_primeiro_acesso } = req.body;
       const service = new StoreUserService();
       const output = await service.execute({
-        cpf,
         login,
         nome,
         cod,
         senha,
-        is_admin,
+        perfil,
         is_primeiro_acesso,
       });
       return res.status(200).json(output);

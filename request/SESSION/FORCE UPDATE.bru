@@ -1,0 +1,20 @@
+meta {
+  name: FORCE UPDATE
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{BASE_URL}}/session/force-update
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{accessToken}}
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

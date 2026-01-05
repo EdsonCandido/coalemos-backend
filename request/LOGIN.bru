@@ -20,7 +20,9 @@ body:json {
 script:post-response {
   if (res.body.accessToken) {
     bru.setVar("accessToken", res.body.accessToken);
-      bru.setVar("refreshToken", res.body.refreshToken);
+  }
+  if (res.body.refreshToken) {
+    bru.setVar("refreshToken", res.body.refreshToken);
   }
 }
 

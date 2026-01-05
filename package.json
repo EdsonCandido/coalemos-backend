@@ -1,15 +1,15 @@
 {
   "name": "backend",
   "version": "0.0.1",
-  "main": "build/app.js",
+  "main": "build/server.js",
   "author": "Edson Cândido",
   "license": "ISC",
   "description": "backend api",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "build": "tsup",
-    "start": "node build/app.js"
+    "start": "node build/server.js"
   },
   "keywords": [],
   "dependencies": {
@@ -25,6 +25,7 @@
     "morgan": "^1.10.0",
     "multer": "^2.0.1",
     "pg": "^8.16.2",
+    "socket.io": "^4.8.3",
     "winston": "^3.17.0",
     "zod": "^3.25.67"
   },

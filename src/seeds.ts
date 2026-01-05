@@ -1,11 +1,9 @@
-import { Knex } from 'knex';
 import logger from './middlewares/logger';
 import { StoreUserService } from './services/users/StoreUserService';
-import { log } from 'winston';
 
 export class SeedsService {
   public async execute() {
-    this.verificaUsuarioPadrao();
+    await this.verificaUsuarioPadrao();
   }
   private async verificaUsuarioPadrao() {
     logger.info('Verificando usuário inicial');
@@ -30,6 +28,8 @@ export class SeedsService {
   }
 
   private async verificaClientePadrao() {
+    logger.info('Verificando cliente inicial');
+
     try {
     } catch (err) {
       logger.info('Cliente já cadastrado');

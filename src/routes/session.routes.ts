@@ -10,5 +10,10 @@ router.post('/login', controller.login);
 router.post('/change', IsAuthenticated(), controller.changePassword);
 router.post('/recover', controller.recoverPassword);
 router.post('/refresh-token', controller.refreshToken);
+router.post(
+  '/force-update',
+  IsAuthenticated(['admin']),
+  controller.forcerUpdate,
+);
 
 export default router;

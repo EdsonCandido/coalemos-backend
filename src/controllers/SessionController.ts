@@ -3,6 +3,7 @@ import logger from '../middlewares/logger';
 import { ChangePasswordService } from '../services/session/ChangePasswordService';
 import { LoginService } from '../services/session/LoginService';
 import { RefreshTokenService } from '../services/session/RefreshTokenService';
+import { getIO } from '../socket';
 
 export class SessionController {
   public async login(req: Request, res: Response): Promise<Response> {
@@ -55,6 +56,21 @@ export class SessionController {
   public async logout(req: Request, res: Response): Promise<Response> {
     try {
       return res.status(200).json({ message: 'Logged out successfully' });
+    } catch (err) {
+      logger.error(err);
+      return res.status(400).send((err as Error).message);
+    }
+  }
+
+  public async forcerUpdate(req: Request, res: Response): Promise<Response> {
+    try {
+      const io = getIO();
+      io.emit('force-refresh');
+
+      return res
+        .status(200)
+        .setHeader('Cache-Control', 'no-store, no-cache, must-revalidate')
+        .json({ message: 'Forced update' });
     } catch (err) {
       logger.error(err);
       return res.status(400).send((err as Error).message);

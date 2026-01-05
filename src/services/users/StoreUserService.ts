@@ -1,6 +1,5 @@
 import { Knex } from 'knex';
 import pgConnection from '../../databases/pgConnection';
-import { string } from 'zod';
 import { FindUserByCodService } from './FindUserByCodService';
 import { dtHoje } from '../../helpers/time';
 import { hash } from 'bcryptjs';
